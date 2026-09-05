@@ -1,8 +1,9 @@
+import os
 import streamlit as st
 import pandas as pd
 import joblib
 import matplotlib.pyplot as plt
-import os 
+import numpy as np
 
 
 st.title("Credit Risk Monitoring Dashboard")
