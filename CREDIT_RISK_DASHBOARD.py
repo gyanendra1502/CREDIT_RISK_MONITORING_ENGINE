@@ -1,12 +1,4 @@
-#Alerting options
-#Print to console (above)
-#Send email via SMTP
-#Push to Slack or webhook
-#Create tickets in monitoring system
-#Step 5 Dashboard and Reporting
-#Purpose Provide a quick Streamlit dashboard to inspect portfolio metrics, top exposures, and time series of EL.
-#python
-# streamlit_dashboard.py
+
 
 import streamlit as st
 import pandas as pd
