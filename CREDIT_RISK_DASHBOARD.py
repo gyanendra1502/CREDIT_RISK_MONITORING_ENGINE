@@ -4,7 +4,6 @@ import joblib
 import matplotlib.pyplot as plt
 import os 
 
-os.chdir(r'C:\GYANENDRA\INFORMATION_TECHNILOGY_PROJECTS\CREDIT_RISK_ENGINE')
 
 st.title("Credit Risk Monitoring Dashboard")
 BASE="CREDIT_RISK_CLIENT_DATA"
