@@ -1,9 +1,42 @@
-import os
+#Alerting options
+#Print to console (above)
+#Send email via SMTP
+#Push to Slack or webhook
+#Create tickets in monitoring system
+#Step 5 Dashboard and Reporting
+#Purpose Provide a quick Streamlit dashboard to inspect portfolio metrics, top exposures, and time series of EL.
+#python
+# streamlit_dashboard.py
+
 import streamlit as st
 import pandas as pd
 import joblib
 import matplotlib.pyplot as plt
-import numpy as np
+import os 
+
+BASE = "CREDIT_RISK_CLIENT_DATA"
+
+def file_exists(path):
+    return os.path.exists(path) and os.path.isfile(path)
+
+
+def load_csv(path):
+    if not file_exists(path):
+        st.error(f"Missing CSV: {path}")
+        st.stop()
+    return pd.read_csv(path, sep=";")
+
+@st.cache_resource
+def load_models(pd_path, lgd_path):
+    if not file_exists(pd_path):
+        raise FileNotFoundError(f"PD model not found: {pd_path}")
+    if not file_exists(lgd_path):
+        raise FileNotFoundError(f"LGD model not found: {lgd_path}")
+    return joblib.load(pd_path), joblib.load(lgd_path)
+
+df = load_csv(os.path.join(BASE, "features.csv"))
+pd_model, lgd_model = load_models(os.path.join("pd_model.joblib"),
+                                  os.path.join("lgd_model.joblib"))
 
 
 st.title("Credit Risk Monitoring Dashboard")
